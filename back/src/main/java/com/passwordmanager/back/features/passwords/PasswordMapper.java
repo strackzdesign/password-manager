@@ -13,11 +13,11 @@ public class PasswordMapper {
         this.modelMapper = modelMapper;
     }
 
-    PasswordDTO entityToDto(Password entity) {
+    public PasswordDTO entityToDto(Password entity) {
         return modelMapper.map(entity, PasswordDTO.class);
     }
 
-    Password dtoToEntity(PasswordDTO dto) {
+    public Password dtoToEntity(PasswordDTO dto) {
         return modelMapper.map(dto, Password.class);
     }
 }

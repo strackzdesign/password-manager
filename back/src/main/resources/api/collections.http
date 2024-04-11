@@ -1,0 +1,31 @@
+### GET COLLECTIONS
+
+GET http://{{ host }}/api/v1/collections/7b602a1f-081e-4f07-aa1f-f1d74daec07c
+Accept: application/json
+
+### CREATE PASSWORD
+
+PUT http://{{ host }}/api/v1/collections
+Content-Type: application/json
+
+{
+  "title": "Collection Name",
+  "description": "Collection Description",
+  "hexColor": "#523D52"
+}
+
+### CREATE PASSWORD
+
+PUT http://{{ host }}/api/v1/collections
+Content-Type: application/json
+
+{
+  "id": "9bb31730-de05-4626-8222-1e0d4a3061fc",
+  "password": "testing_password_replace",
+  "description": "testing description password replace"
+}
+
+### DELETE PASSWORD
+
+DELETE http://{{ host }}/api/v1/collections/9bb31730-de05-4626-8222-1e0d4a3061fc
+Content-Type: application/json

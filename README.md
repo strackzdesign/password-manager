@@ -23,8 +23,8 @@ The repository is organized into four main folders:
 ### Prerequisites
 
 - Docker and Docker-compose
-- Node.js and npm (for frontend development)
-- Java Development Kit (JDK) for Spring Boot
+- Node.js 20.12.1 and npm (for frontend development)
+- OpenJDK 21 (for backend development)
 
 ### Setup and Installation
 
@@ -34,7 +34,7 @@ The repository is organized into four main folders:
 git clone https://github.com/strackzdev/ypasswordmanager
 ```
    
-2. Run the docker compose application (Development will be in the /docs):
+2. Run the docker compose application (Extra documentation under development):
 
 ```bash
 npm run compose:dev

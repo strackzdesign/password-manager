@@ -1,6 +1,7 @@
 package com.passwordmanager.back.features.passwords;
 
 import com.passwordmanager.back.exceptions.NotFoundException;
+import com.passwordmanager.back.features.collections.CollectionMapper;
 import jakarta.persistence.PersistenceException;
 import jakarta.transaction.Transactional;
 import jakarta.validation.constraints.NotBlank;
@@ -17,11 +18,13 @@ import java.util.UUID;
 public class PasswordServiceImpl implements PasswordService {
     public final PasswordRepository passwordRepository;
     public final PasswordMapper passwordMapper;
+    public final CollectionMapper collectionMapper;
 
     @Autowired
-    public PasswordServiceImpl(PasswordRepository passwordRepository, PasswordMapper passwordMapper) {
+    public PasswordServiceImpl(PasswordRepository passwordRepository, PasswordMapper passwordMapper, CollectionMapper collectionMapper) {
         this.passwordRepository = passwordRepository;
         this.passwordMapper = passwordMapper;
+        this.collectionMapper = collectionMapper;
     }
 
     @Override
@@ -63,17 +66,19 @@ public class PasswordServiceImpl implements PasswordService {
                 .builder()
                 .password(Base64.getEncoder().encodeToString(dto.getPassword().getBytes()))
                 .description(dto.getDescription())
+                .collection(Objects.nonNull(dto.getCollection()) ? collectionMapper.dtoToEntity(dto.getCollection()) : null)
                 .build();
 
         return passwordRepository.save(toSaveEntity);
     }
 
     private Password updateEntity(PasswordDTO dto) throws NotFoundException {
-        Optional<Password> entity = passwordRepository.findById(UUID.fromString(dto.getId()));
+        Optional<Password> entity = passwordRepository.findById(dto.getId());
 
         if(entity.isPresent()) {
             entity.get().setPassword(Base64.getEncoder().encodeToString(dto.getPassword().getBytes()));
             entity.get().setDescription(dto.getDescription());
+            entity.get().setCollection(Objects.nonNull(dto.getCollection()) ? collectionMapper.dtoToEntity(dto.getCollection()) : null);
             return passwordRepository.save(entity.get());
         }
 

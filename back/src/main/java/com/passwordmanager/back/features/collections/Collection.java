@@ -1,20 +1,18 @@
-package com.passwordmanager.back.features.passwords;
+package com.passwordmanager.back.features.collections;
 
-import com.passwordmanager.back.features.collections.Collection;
+import com.passwordmanager.back.features.passwords.Password;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Set;
 import java.util.UUID;
 
 @Entity
@@ -22,19 +20,21 @@ import java.util.UUID;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "PASSWORDS")
-public class Password {
+public class Collection {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
     @Column(nullable = false)
-    private String password;
+    private String title;
 
     @Column
     private String description;
 
-    @ManyToOne
-    @JoinColumn(name="collection_id")
-    private Collection collection;
+    @Column
+    private String hexColor;
+
+    @OneToMany(mappedBy = "collection")
+    private Set<Password> passwords;
+
 }
