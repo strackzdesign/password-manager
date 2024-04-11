@@ -1,0 +1,19 @@
+{
+  "name": "password_manager",
+  "version": "1.0.0",
+  "description": "Password Manager Application",
+  "main": "index.js",
+  "scripts": {
+    "compose:dev": "docker compose -f ./deploy/docker-compose.yml up -d --build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/strackzdesign/password-manager.git"
+  },
+  "author": "stracKzdev",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/strackzdesign/password-manager/issues"
+  },
+  "homepage": "https://github.com/strackzdesign/password-manager#readme"
+}
