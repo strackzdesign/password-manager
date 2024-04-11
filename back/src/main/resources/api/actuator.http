@@ -1,0 +1,5 @@
+### HEALTH CHECK
+
+GET http://{{ host }}/actuator/health
+Accept: application/json
+
